@@ -31,9 +31,15 @@ public class NCPListener implements Listener {
         if (args.length == 4) {
             if (args[3].length() <= 5) {
                 int power = Integer.parseInt(args[3]);
-                if (power >= 10) {
+                if (power > 0) {
                     plugin.getSql().addViolation(args[1], args[2], power, plugin.getArenaName());
                 }
+            }else{
+                if(args[3].equals("9223372036854775807")){
+                    plugin.getSql().addViolation(args[1], args[2], 999999, plugin.getArenaName());
+                }
+
+
             }
         }
     }
