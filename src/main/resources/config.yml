@@ -1,0 +1,7 @@
+mysql:
+        host: sv2.craftgames.pl
+        user:
+        password:
+        db:
+        port: 3306
+minigame: ''

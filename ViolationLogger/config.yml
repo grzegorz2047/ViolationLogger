@@ -1,0 +1,7 @@
+mysql:
+    host: sv2.craftgames.pl
+    port: 3306
+    user: ViolationLogger
+    password: C9Rv2BfZUPzLzdHy
+    db: NowaEdycja2016
+minigame: ''
