@@ -1,5 +1,6 @@
 package com.gmail.grzegorz2047.violationlogger.database;
 
+import com.gmail.grzegorz2047.violationlogger.Violation;
 import com.gmail.grzegorz2047.violationlogger.ViolationLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -71,8 +72,12 @@ public class SQLManager {
         return statement;
     }
 
-    public void addViolation(String player, String violation, int power, String arena) {
+    public void addViolation(Violation violation) {
         try {
+            String player = violation.getPlayer();
+            String violationType = violation.getViolationType();
+            int power = violation.getPower();
+            String arena = violation.getArena();
             statement = this.connection.prepareStatement("INSERT INTO ViolationLogger (id, player, violation, power, arena) VALUES(?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ResultSet set = statement.getGeneratedKeys();
             int i = 0;
@@ -81,7 +86,7 @@ public class SQLManager {
             }
             statement.setInt(1, i);
             statement.setString(2, player);
-            statement.setString(3, violation);
+            statement.setString(3, violationType);
             statement.setInt(4, power);
             statement.setString(5, arena);
             statement.execute();
