@@ -14,11 +14,11 @@ public class ViolationLogger extends JavaPlugin {
 
     @Override
     public void onEnable() {
-//See "Creating you're defaults"
-        this.getConfig().options().copyDefaults(true); // NOTE: You do not have to use "plugin." if the class extends the java plugin
+        this.getConfig().options().copyDefaults(true);
         //Save the config whenever you manipulate it
         this.saveConfig();
         this.processor = new ViolationProcessing(this);
+        processor.start();
         this.getServer().getPluginManager().registerEvents(new NCPListener(this), this);
     }
 
