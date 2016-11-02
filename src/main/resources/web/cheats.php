@@ -11,6 +11,11 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+	<script language="javascript" type="text/javascript">
+		setInterval(function(){
+			$('#test').load("cheats.php #test");
+		}, 10000);
+	</script>
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 			<div class="navbar-header">
@@ -44,11 +49,11 @@
 			</div>
 		  </div>
 		</nav>
-		<div class="container">
+		<div id="test" class="container">
 <?php
 	$connect = mysql_connect("localhost","user","pass") or die("Nie mozna polaczyc sie z baza: ".mysql_error());
-	mysql_select_db("database", $connect);
-	$sql = "SELECT player, violation, Sum(power) AS 'AllPower' FROM `ViolationLogger` WHERE violation='KillAura' OR violation='Criticals' OR violation='FastBreak' OR violation='Nuker' OR violation='Regen' OR violation='PacketSender' group by player, violation ORDER BY AllPower DESC";
+	mysql_select_db("NowaEdycja2016", $connect);
+	$sql = "SELECT player, violation, Sum(power) AS 'AllPower' FROM `ViolationLogger` WHERE violation='KillAura' OR violation='Criticals' OR violation='FastBreak' OR violation='Nuker' OR violation='Regen' group by player, violation ORDER BY AllPower DESC";
 	$output = mysql_query($sql, $connect);
 ?>	
 			<table class='table table-striped table-hover '>

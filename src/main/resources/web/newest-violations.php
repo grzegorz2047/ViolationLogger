@@ -14,7 +14,7 @@
 	<script language="javascript" type="text/javascript">
 	setInterval(function(){
 		$('#test').load("newest-violations.php #test");
-	}, 5000);
+	}, 6000);
 	</script>
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
@@ -30,7 +30,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			  <ul class="nav navbar-nav">
-				<li><a href="#">Wszystkie serwery</a></li>
+				<li><a href="cheats.php">Wszystkie serwery</a></li>
 				<li><a href="#">TheWalls</a></li>
 				<li><a href="#">SkyWars</a></li>
 				<li><a href="#">X-Run</a></li>
@@ -52,8 +52,8 @@
 		<div id="test" class="container">
 <?php
 	$connect = mysql_connect("localhost","user","pass") or die("Nie mozna polaczyc sie z baza: ".mysql_error());
-	mysql_select_db("database", $connect);
-	$sql = "SELECT player, violation, Sum(power) AS 'AllPower' FROM `ViolationLogger` group by player, violation ORDER BY id DESC LIMIT 10";
+	mysql_select_db("NowaEdycja2016", $connect);
+	$sql = "SELECT player, violation, Sum(power) AS 'AllPower' FROM `ViolationLogger` WHERE violation='KillAura' OR violation='Criticals' OR violation='FastBreak' OR violation='Nuker' OR violation='Regen' group by player, violation ORDER BY id DESC LIMIT 10";
 	$output = mysql_query($sql, $connect);
 ?>	
 			<table class='table table-striped table-hover '>
