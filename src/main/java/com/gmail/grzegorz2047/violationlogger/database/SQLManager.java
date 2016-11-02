@@ -49,6 +49,7 @@ public class SQLManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?autoReconnect=true", user, password);
+            this.connection.prepareStatement("CREATE TABLE IF NOT EXISTS `ViolationLogger` (`id` bigint(20) NOT NULL AUTO_INCREMENT,`player` varchar(32) NOT NULL,`violation` varchar(32) NOT NULL,`power` bigint(20) NOT NULL,`arena` varchar(64) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB;").execute();
             this.statement = this.connection.prepareStatement("Select * FROM ViolationLogger WHERE 1");
             Bukkit.getLogger().info("[MySQL] Connected to MySQL successfully!");
         } catch (SQLException ex) {
