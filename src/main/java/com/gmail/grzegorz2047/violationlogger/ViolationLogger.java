@@ -15,7 +15,6 @@ public class ViolationLogger extends JavaPlugin {
     @Override
     public void onEnable() {
         this.getConfig().options().copyDefaults(true);
-        //Save the config whenever you manipulate it
         this.saveConfig();
         this.processor = new ViolationProcessing(this);
         processor.start();
